@@ -1,4 +1,4 @@
-from line import LineClient, LineGroup, LineContact
+import line
 
 try:
     client = LineClient("mythlegend101@gmail.com", "Bboy123!")
