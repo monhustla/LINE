@@ -1,4 +1,4 @@
-import line import LineClient, LineGroup, LineContact
+from line import LineClient, LineGroup, LineContact
 
 authToken=client.authToken
 print authToken
