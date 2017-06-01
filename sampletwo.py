@@ -7,3 +7,4 @@ print authToken
 
 client=LineClient(authToken=authToken)
     #client = LineClient(authToken="AUTHTOKEN")
+
