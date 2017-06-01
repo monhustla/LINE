@@ -58,17 +58,17 @@ class LineClient(LineAPI):
         if is_mac:
             os_version = "10.9.4-MAVERICKS-x64"
             user_agent = "DESKTOP:MAC:%s(%s)" % (os_version, self.version)
-            app = "DESKTOPMAC\t%s\tMAC\t%s" % (self.version, os_version)
+            self.app = "DESKTOPMAC\t%s\tMAC\t%s" % (self.version, os_version)
         else:
             os_version = "5.1.2600-XP-x64"
             user_agent = "DESKTOP:WIN:%s(%s)" % (os_version, self.version)
-            app = "DESKTOPWIN\t%s\tWINDOWS\t%s" % (self.version, os_version)
+            self.app = "DESKTOPWIN\t%s\tWINDOWS\t%s" % (self.version, os_version)
 
         if com_name:
             self.com_name = com_name
 
         self._headers['User-Agent']         = user_agent
-        self._headers['X-Line-Application'] = app
+        #self._headers['X-Line-Application'] = app
 
         if authToken:
             self.authToken = self._headers['X-Line-Access'] = authToken
