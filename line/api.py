@@ -98,7 +98,7 @@ class LineAPI(object):
         pub_key       = rsa.PublicKey(int(n,16), int(e,16))
         crypto        = rsa.encrypt(message, pub_key).encode('hex')
 
-        self._headers['X-Line-Application']=Self.app
+        #self._headers['X-Line-Application']=Self.app
         self.transport = THttpClient.THttpClient(self.LINE_HTTP_URL)
         self.transport.setCustomHeaders(self._headers)
 
