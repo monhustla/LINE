@@ -2,7 +2,9 @@
 """
     line.client
     ~~~~~~~~~~~
+
     LineClient for sending and receiving message from LINE server.
+
     :copyright: (c) 2014 by Taehoon Kim.
     :license: BSD, see LICENSE for more details.
 """
@@ -29,6 +31,7 @@ from curve.ttypes import ToType, ContentType
 
 class LineAPI(object):
     """This class is a wrapper of LINE API
+
     """
     LINE_DOMAIN = "https://gd2.line.naver.jp"
 
@@ -170,6 +173,7 @@ class LineAPI(object):
 
     def _getProfile(self):
         """Get profile information
+
         :returns: Profile object
                     - picturePath
                     - displayName
@@ -196,6 +200,7 @@ class LineAPI(object):
 
     def _getContacts(self, ids):
         """Get contact information list from ids
+
         :returns: List of Contact list
                     - status
                     - capableVideoCall
@@ -312,6 +317,7 @@ class LineAPI(object):
 
     def _sendMessage(self, message, seq=0):
         """Send a message to `id`. `id` could be contact id or group id
+
         :param message: `message` instance
         """
         return self._client.sendMessage(seq, message)
