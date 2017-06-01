@@ -33,7 +33,7 @@ class LineAPI(object):
     """This class is a wrapper of LINE API
 
     """
-    LINE_DOMAIN = "http://gd2.line.naver.jp"
+    LINE_DOMAIN = "https://gd2.line.naver.jp"
 
     LINE_HTTP_URL          = LINE_DOMAIN + "/api/v4/TalkService.do"
     LINE_HTTP_IN_URL       = LINE_DOMAIN + "/P4"
@@ -98,6 +98,7 @@ class LineAPI(object):
         pub_key       = rsa.PublicKey(int(n,16), int(e,16))
         crypto        = rsa.encrypt(message, pub_key).encode('hex')
 
+        self._headers['X-Line-Application']=Self.app
         self.transport = THttpClient.THttpClient(self.LINE_HTTP_URL)
         self.transport.setCustomHeaders(self._headers)
 
