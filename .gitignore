@@ -4,6 +4,8 @@
 *.sh
 *test*
 *backup*
+examples/samplebot.py
+.line.crt
 
 #thrift
 *thrift
@@ -23,3 +25,7 @@ develop-eggs
 
 # Vim
 .*.sw[op]
+
+# Patches
+*.orig
+*.patch
