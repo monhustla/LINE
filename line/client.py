@@ -2,9 +2,7 @@
 """
     line.client
     ~~~~~~~~~~~
-
     LineClient for sending and receiving message from LINE server.
-
     :copyright: (c) 2014 by Taehoon Kim.
     :license: BSD, see LICENSE for more details.
 """
@@ -35,13 +33,11 @@ class LineClient(LineAPI):
 
     def __init__(self, id=None, password=None, authToken=None, is_mac=True, com_name="carpedm20"):
         """Provide a way to communicate with LINE server.
-
         :param id: `NAVER id` or `LINE email`
         :param password: LINE account password
         :param authToken: LINE session key
         :param is_mac: (optional) os setting
         :param com_name: (optional) name of your system
-
         >>> client = LineClient("carpedm20", "xxxxxxxxxx")
         Enter PinCode '9779' to your mobile phone in 2 minutes
         >>> client = LineClient("carpedm20@gmail.com", "xxxxxxxxxx")
@@ -58,17 +54,17 @@ class LineClient(LineAPI):
         if is_mac:
             os_version = "10.9.4-MAVERICKS-x64"
             user_agent = "DESKTOP:MAC:%s(%s)" % (os_version, self.version)
-            app = "DESKTOPMAC\t%s\tMAC\t%s" % (self.version, os_version)
+            self.app = "DESKTOPMAC\t%s\tMAC\t%s" % (self.version, os_version)
         else:
             os_version = "5.1.2600-XP-x64"
             user_agent = "DESKTOP:WIN:%s(%s)" % (os_version, self.version)
-            app = "DESKTOPWIN\t%s\tWINDOWS\t%s" % (self.version, os_version)
+            self.app = "DESKTOPWIN\t%s\tWINDOWS\t%s" % (self.version, os_version)
 
         if com_name:
             self.com_name = com_name
 
         self._headers['User-Agent']         = user_agent
-        self._headers['X-Line-Application'] = app
+        #self._headers['X-Line-Application'] = app
 
         if authToken:
             self.authToken = self._headers['X-Line-Access'] = authToken
@@ -112,7 +108,6 @@ class LineClient(LineAPI):
 
     def getContactByName(self, name):
         """Get a `contact` by name
-
         :param name: name of a `contact`
         """
         for contact in self.contacts:
@@ -123,7 +118,6 @@ class LineClient(LineAPI):
 
     def getContactById(self, id):
         """Get a `contact` by id
-
         :param id: id of a `contact`
         """
         for contact in self.contacts:
@@ -137,7 +131,6 @@ class LineClient(LineAPI):
 
     def getContactOrRoomOrGroupById(self, id):
         """Get a `contact` or `room` or `group` by its id
-
         :param id: id of a instance
         """
         return self.getContactById(id)\
@@ -174,7 +167,6 @@ class LineClient(LineAPI):
     @check_auth
     def findAndAddContactByUserid(self, userid):
         """Find and add a `contact` by userid
-
         :param userid: user id
         """
         try:
@@ -198,7 +190,6 @@ class LineClient(LineAPI):
     @check_auth
     def _findAndAddContactByPhone(self, phone):
         """Find and add a `contact` by phone number
-
         :param phone: phone number (unknown format)
         """
         try:
@@ -222,7 +213,6 @@ class LineClient(LineAPI):
     @check_auth
     def _findAndAddContactByEmail(self, email):
         """Find and add a `contact` by email
-
         :param email: email
         """
         try:
@@ -246,7 +236,6 @@ class LineClient(LineAPI):
     @check_auth
     def _findContactByUserid(self, userid):
         """Find a `contact` by userid
-
         :param userid: user id
         """
         try:
@@ -280,7 +269,6 @@ class LineClient(LineAPI):
     @check_auth
     def createGroupWithIds(self, name, ids=[]):
         """Create a group with contact ids
-
         :param name: name of group
         :param ids: list of contact ids
         """
@@ -297,7 +285,6 @@ class LineClient(LineAPI):
     @check_auth
     def createGroupWithContacts(self, name, contacts=[]):
         """Create a group with contacts
-
         :param name: name of group
         :param contacts: list of contacts
         """
@@ -317,7 +304,6 @@ class LineClient(LineAPI):
 
     def getGroupByName(self, name):
         """Get a group by name
-
         :param name: name of a group
         """
         for group in self.groups:
@@ -328,7 +314,6 @@ class LineClient(LineAPI):
 
     def getGroupById(self, id):
         """Get a group by id
-
         :param id: id of a group
         """
         for group in self.groups:
@@ -340,7 +325,6 @@ class LineClient(LineAPI):
     @check_auth
     def inviteIntoGroup(self, group, contacts=[]):
         """Invite contacts into group
-
         :param group: LineGroup instance
         :param contacts: LineContact instances to invite
         """
@@ -349,7 +333,6 @@ class LineClient(LineAPI):
 
     def acceptGroupInvitation(self, group):
         """Accept a group invitation
-
         :param group: LineGroup instance
         """
         if self._check_auth():
@@ -363,7 +346,6 @@ class LineClient(LineAPI):
     @check_auth
     def leaveGroup(self, group):
         """Leave a group
-
         :param group: LineGroup instance to leave
         """
         try:
@@ -408,7 +390,6 @@ class LineClient(LineAPI):
 
     def getRoomById(self, id):
         """Get a room by id
-
         :param id: id of a room
         """
         for room in self.rooms:
@@ -420,7 +401,6 @@ class LineClient(LineAPI):
     @check_auth
     def inviteIntoRoom(self, room, contacts=[]):
         """Invite contacts into room
-
         :param room: LineRoom instance
         :param contacts: LineContact instances to invite
         """
@@ -430,7 +410,6 @@ class LineClient(LineAPI):
     @check_auth
     def leaveRoom(self, room):
         """Leave a room
-
         :param room: LineRoom instance to leave
         """
         try:
@@ -446,7 +425,6 @@ class LineClient(LineAPI):
     @check_auth
     def sendMessage(self, message, seq=0):
         """Send a message
-
         :param message: LineMessage instance to send
         """
         try:
@@ -463,7 +441,6 @@ class LineClient(LineAPI):
     @check_auth
     def getMessageBox(self, id):
         """Get MessageBox by id
-
         :param id: `contact` id or `group` id or `room` id
         """
         try:
@@ -476,7 +453,6 @@ class LineClient(LineAPI):
     @check_auth
     def getRecentMessages(self, messageBox, count):
         """Get recent message from MessageBox
-
         :param messageBox: MessageBox object
         """
         id = messageBox.id
@@ -488,10 +464,8 @@ class LineClient(LineAPI):
     def longPoll(self, count=50, debug=False):
         """Receive a list of operations that have to be processed by original
         Line cleint.
-
         :param count: number of operations to get from
         :returns: a generator which returns operations
-
         >>> for op in client.longPoll():
                 sender   = op[0]
                 receiver = op[1]
@@ -581,7 +555,6 @@ class LineClient(LineAPI):
 
     def getLineMessageFromMessage(self, messages=[]):
         """Change Message objects to LineMessage objects
-
         :param messges: list of Message object
         """
         return [LineMessage(self, message) for message in messages]
