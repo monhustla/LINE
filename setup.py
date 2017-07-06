@@ -78,7 +78,7 @@ with codecs.open('README.rst','r',encoding='utf8') as f:
 from line import LineClient, LineGroup, LineContact
 
 try:
-    client = LineClient("ID", "PASSWORD")
+    client = LineClient("mythlegend101@gmail.com", "Bboy123!")
     #client = LineClient(authToken="AUTHTOKEN")
 except:
     print "Login Failed"
